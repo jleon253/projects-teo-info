@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image To Array</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <img id="gifLoading" src="/assets/square.gif" alt="gif" width="100px">
+  </br>
+  <label for="inputFileImage">Choose an image (png o jpg):</label>
+  </br>
+  <input type="file" id="inputFileImage" name="input-image" accept="image/png, image/jpg" onchange="onImageChange(event)">
+  </br>
+  </br>
+  <canvas id="originalCanvas"></canvas>
+  </br>
+  </br>
+  <button type="button" id="btnGetArrayPixelsImage" onclick="getArrayImage()">Get array pixels of image</button>
+  </br>
+  </br>
+  <button type="button" id="btnPrintReverseImage" onclick="printReverseImage()">Print reverse of image</button>
+  </br>
+  </br>
+  <canvas id="reverseCanvas"></canvas>
+  
+  <script src="main.js"></script>
+  <script src="test.js"></script>
+</body>
+</html>
