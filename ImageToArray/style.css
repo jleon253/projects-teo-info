@@ -2,3 +2,9 @@
   display: none;
   margin: 0px auto;
 }
+
+#originalCanvas {
+  display: block;
+  margin: auto;
+  box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.13);
+}
