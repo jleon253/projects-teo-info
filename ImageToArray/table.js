@@ -1,4 +1,4 @@
-let containerInfo = document.getElementById('container-info');
+let containerData = document.getElementById('container-data');
 
 const buildTable = (objectData, titleTable) => {
   let table = document.createElement('table');
@@ -6,7 +6,7 @@ const buildTable = (objectData, titleTable) => {
   table.setAttribute('class', 'table table-striped');
   table.appendChild(buildHeader(titleTable));
   table.appendChild(buildBody(objectData));
-  containerInfo.appendChild(table);
+  containerData.appendChild(table);
 };
 
 const buildHeader = (titleTable) => {

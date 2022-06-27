@@ -6,28 +6,33 @@ let imgInfo = {};
 let originalCanvas, originalContext;
 let arrayData = [];
 let arrayPixelData = [];
+let lengthPixelData = 0;
+
 let loading;
+let inputHdRho;
+let inputChannel;
+let spanInfoTheorem;
+let btnCollapseInfo;
+
+let containerCanvas;
+let containerInfo;
+let containerChannel;
 
 // ------- Functions -------
 
 const getElementsDOM = () => {
   fileValue = document.getElementById('inputFileImage');
-  originalCanvas = document.getElementById('originalCanvas');
   loading = document.getElementById('gifLoading');
-
-  originalContext = originalCanvas.getContext('2d');
-};
-
-const clearVariables = () => {
-  img = '';
-  imgFile = '';
-  originalContext.restore();
-  arrayData = [];
-  arrayPixelData = [];
+  inputHdRho = document.getElementById('HdRho');
+  inputChannel = document.getElementById('channel');
+  spanInfoTheorem = document.getElementById('infoTheorem');
+  btnCollapseInfo = document.getElementById('btnCollapseInfo');
+  containerCanvas = document.getElementById('container-canvas');
+  containerInfo = document.getElementById('container-info');
+  containerChannel = document.getElementById('container-channel');
 };
 
 const onImageChange = (e) => {
-  clearVariables();
   let newImage = e.target.files[0];
   buildImageInfo({
     'name': newImage.name,
@@ -59,11 +64,15 @@ const printOriginalImage = () => {
   buildImageInfo({
     'width': img.width,
     'height': img.height,
-    'pixels': (4 * img.width * img.width)
+    'subPixels': (4 * img.width * img.width)
   });
+  originalCanvas = document.createElement('canvas');
+  originalCanvas.setAttribute('id', 'originalCanvas')
   originalCanvas.width = img.width;
   originalCanvas.height = img.height;
+  originalContext = originalCanvas.getContext('2d');
   originalContext.drawImage(img, 0, 0, img.width, img.height);
+  containerCanvas.appendChild(originalCanvas);
 };
 
 const getArrayImage = () => {
@@ -92,43 +101,15 @@ const getArrayPixelsColorsOfImage = (arrayData) => {
       count++;
     }
   }
-  // console.log('Array pixels image', arrayPixelData);
+  lengthPixelData = arrayPixelData.length;
+  buildImageInfo({
+    'pixels': lengthPixelData
+  });
   return arrayPixelData;
-};
-
-const processing = (callback) => {
-  loading.style.display = 'block';
-  setTimeout(() => {
-    callback?.();
-    loading.style.display = 'none';
-  }, 1000);
 };
 
 getElementsDOM();
 
-
-// const printReverseImage = () => {
-//   let uint8Array, reverseImageData;
-
-//   loading.style.display = 'block';
-//   setTimeout(() => {
-//     reverseCanvas.width = (img.width);
-//     reverseCanvas.height = (img.height);
-//     reverseContext = reverseCanvas.getContext('2d');
-//     uint8Array = new Uint8ClampedArray(reverseArrayImageData());
-//     reverseImageData = new ImageData(uint8Array, img.width, img.height);
-//     reverseContext.putImageData(reverseImageData, 0, 0);
-//     loading.style.display = 'none';
-//   }, 50);
-// };
-
-// const reverseArrayImageData = () => {
-//   let arrayReverse = [];
-
-//   arrayReverse = [].concat(...arrayPixelData.reverse());
-//   console.log('Array reverse image', arrayReverse);
-//   return arrayReverse;
-// };
 
 // https://stackoverflow.com/questions/9258932/how-to-convert-image-to-byte-array-using-javascript-only-to-store-image-on-sql-s
 // https://codepen.io/chrisparton1991/pen/vaBYmE?editors=1011

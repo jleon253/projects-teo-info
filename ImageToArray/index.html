@@ -1,37 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image To Array</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-</head>
-<body>
-  <img id="gifLoading" src="/ImageToArray/assets/square.gif" alt="gif" width="100px">
-  </br>
-  <label for="inputFileImage" class="form-label">Choose an image (png o jpg):</label>
-  </br>
-  <input type="file" id="inputFileImage" class="form-control" name="input-image" accept="image/png, image/jpg" onchange="onImageChange(event)">
-  </br>
-  </br>
-  <canvas id="originalCanvas"></canvas>
-  </br>
-  </br>
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInfo" aria-expanded="false" aria-controls="collapseInfo">
-    Hide Container Info
-  </button>
-  <div class="collapse show" id="collapseInfo">
-    <div id="container-info"></div>
-  </div>
-  
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-  <script src="ui.js"></script>
-  <script src="table.js"></script>
-  <script src="main.js"></script>
-  <script src="frecuency.js"></script>
-</body>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+      content="IE=edge">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+    <title>Image To Array</title>
+    <link rel="stylesheet"
+      href="style.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="fs-3 text-center text-bold mt-3 border-bottom pb-2">Laboratorio #2</h1>
+      <span class="fw-bold">Integrantes:</span>
+      <div class="my-2 d-flex justify-content-around">
+        <span class="badge bg-success text-success bg-opacity-10 border-success border-opacity-10">John León</span>
+        <span class="badge bg-success text-success bg-opacity-10 border-success border-opacity-10">Diana Rodriguez</span>
+        <span class="badge bg-success text-success bg-opacity-10 border-success border-opacity-10">Julian Pianda</span>
+      </div>
+      <div id="container-file" class="my-5">
+        <img id="gifLoading"
+          src="/ImageToArray/assets/square.svg"
+          class="my-3"
+          alt="gif"
+          width="100px">
+        <label for="inputFileImage"
+          class="form-label">Carga una imagen (png o jpg):</label>
+        <input type="file"
+          id="inputFileImage"
+          class="form-control"
+          name="input-image"
+          accept="image/png, image/jpg"
+          onchange="onImageChange(event)">
+      </div>
+      <div id="container-canvas" class="my-4"></div>
+      <div id="container-info" class="d-none">
+        <div class="d-grid gap-2">
+          <button id="btnCollapseInfo"
+            class="btn btn-link btn-sm"
+            type="button"
+            onclick="changeTextCollapse()"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseInfo"
+            aria-expanded="false"
+            aria-controls="collapseInfo">
+            Ocultar información
+          </button>
+        </div>
+        <div class="collapse show" id="collapseInfo">
+          <div id="container-data"></div>
+        </div>
+      </div>
+      <div class="my-4"></div>
+      <div id="container-channel" class="d-none">
+        <h2 class="fs-4 text-center border-top p-4">Capacidad de información</h2>
+        <form class="mb-5">
+          <div class="mb-3">
+            <label for="HdRho" class="form-label">H(ℸ):</label>
+            <input id="HdRho" type="text" readonly class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="channel" class="form-label">Canal:</label>
+            <input type="number"
+              class="form-control"
+              id="channel"
+              placeholder="Ingresa un valor">
+          </div>
+          <div class="d-grid gap-2">
+            <button type="button"
+              class="btn btn-primary mb-3"
+              onclick="getChannelCapacity()">Validar Teorema H(ℸ) <= C</button>
+            <span id="infoTheorem" class="fs-6 text-center fw-bold bg-success text-success bg-opacity-10 border-success border-opacity-10"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"></script>
+    <script src="ui.js"></script>
+    <script src="table.js"></script>
+    <script src="main.js"></script>
+    <script src="frecuency.js"></script>
+  </body>
+
 </html>
